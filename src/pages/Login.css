@@ -1,133 +1,510 @@
-.auth-page {
+/* ─────────────────────────────────────────────
+   IndustryLink · Login page
+   Matches homepage design system:
+   - Font: Rajdhani (display) + Inter (body)
+   - Navy #0D1B2A · Amber #F59E0B · White #FFFFFF
+   - bg #F7F8FA · border #E2E8F0
+   ───────────────────────────────────────────── */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ── Layout shell ── */
+.il-login {
   min-height: 100vh;
+  display: flex;
+  font-family: 'Inter', sans-serif;
+}
+
+/* ── Left panel (brand) ── */
+.il-login__panel {
+  width: 420px;
+  flex-shrink: 0;
+  background: #0D1B2A;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle grid texture */
+.il-login__panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(245,158,11,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(245,158,11,0.07) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+
+/* Amber glow */
+.il-login__panel::after {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 340px;
+  height: 260px;
+  background: radial-gradient(ellipse, rgba(245,158,11,0.10) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.il-login__panel-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 44px 48px;
+}
+
+/* ── Logo ── */
+.il-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  text-decoration: none;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #F7F8FA;
+  letter-spacing: 0.3px;
+  margin-bottom: auto;
+}
+
+.il-logo span {
+  color: #F59E0B;
+}
+
+.il-logo__sq {
+  width: 34px;
+  height: 34px;
+  background: #F59E0B;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-lg);
-  background: var(--color-surface);
+  flex-shrink: 0;
 }
 
-.auth-page__container {
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  padding: var(--spacing-xl);
+.il-logo__sq svg {
+  width: 19px;
+  height: 19px;
+}
+
+.il-logo__sq svg path {
+  stroke: #0D1B2A;
+}
+
+/* ── Panel copy ── */
+.il-login__panel-copy {
+  margin: 48px 0 36px;
+}
+
+.il-login__panel-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 2.1rem;
+  color: #F7F8FA;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+
+.il-login__panel-sub {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.48);
+  line-height: 1.65;
+  max-width: 280px;
+}
+
+/* ── Stats ── */
+.il-login__stats {
+  display: flex;
+  gap: 0;
+  margin-bottom: 36px;
+}
+
+.il-login__stat {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 0 0;
+  margin-right: 20px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.il-login__stat:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+.il-login__stat-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #F59E0B;
+  line-height: 1;
+}
+
+.il-login__stat-label {
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.38);
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+}
+
+/* ── Trust badges ── */
+.il-login__trust {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.il-login__trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+}
+
+.il-login__trust-item svg {
+  width: 14px;
+  height: 14px;
+  fill: #F59E0B;
+  flex-shrink: 0;
+}
+
+/* ── Right form side ── */
+.il-login__form-side {
+  flex: 1;
+  background: #F7F8FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 32px;
+}
+
+.il-login__form-wrap {
   width: 100%;
   max-width: 400px;
 }
 
-.auth-page__header {
-  margin-bottom: var(--spacing-xl);
+/* ── Form header ── */
+.il-login__form-header {
+  margin-bottom: 28px;
 }
 
-.auth-page__title {
-  font-size: 24px;
-  font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-sm);
+.il-login__form-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  color: #0D1B2A;
+  line-height: 1;
+  margin-bottom: 6px;
 }
 
-.auth-page__subtitle {
-  color: var(--color-text);
-  opacity: 0.7;
+.il-login__form-sub {
+  font-size: 0.85rem;
+  color: #718096;
 }
 
-.auth-page__form {
+/* ── Form ── */
+.il-login__form {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: 18px;
 }
 
-.auth-page__error {
-  padding: var(--spacing-md);
-  background: #fee;
-  border: 1px solid #fcc;
-  border-radius: 4px;
-  color: #c33;
-  font-size: 14px;
-}
-
-.auth-page__field {
+/* Error */
+.il-login__error {
   display: flex;
-  flex-direction: column;
-  gap: var(--spacing-sm);
-}
-
-.auth-page__label {
-  font-size: 14px;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 14px;
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: 10px;
+  color: #B91C1C;
+  font-size: 0.83rem;
   font-weight: 500;
-  color: var(--color-primary);
+  line-height: 1.4;
 }
 
-.auth-page__input {
-  padding: 12px;
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
-  font-size: 16px;
+.il-login__error svg {
+  width: 16px;
+  height: 16px;
+  fill: #EF4444;
+  flex-shrink: 0;
 }
 
-.auth-page__submit {
-  background: var(--color-accent);
-  color: white;
-  padding: 16px;
-  border-radius: 4px;
-  font-size: 16px;
+/* Field */
+.il-login__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.il-login__label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.il-login__label {
+  font-size: 0.82rem;
   font-weight: 600;
-  min-height: var(--tap-target);
-  transition: opacity var(--transition);
+  color: #1A202C;
+  letter-spacing: 0.1px;
 }
 
-.auth-page__submit:hover {
-  opacity: 0.9;
-}
-
-.auth-page__footer {
-  text-align: center;
-  padding-top: var(--spacing-md);
-  border-top: 1px solid var(--color-border);
-}
-
-.auth-page__footer-text {
-  font-size: 14px;
-  color: var(--color-text);
-}
-
-.auth-page__link {
-  color: var(--color-accent);
+.il-login__forgot {
   background: none;
   border: none;
   padding: 0;
-  font-size: 14px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #F59E0B;
   cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: color 0.15s;
+}
+
+.il-login__forgot:hover {
+  color: #D97706;
   text-decoration: underline;
 }
 
-.auth-page__demo {
-  margin-top: var(--spacing-xl);
-  padding: var(--spacing-md);
-  background: var(--color-surface);
-  border-radius: 4px;
+.il-login__input {
+  width: 100%;
+  padding: 12px 14px;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-family: 'Inter', sans-serif;
+  color: #1A202C;
+  outline: none;
+  transition: border-color 0.18s, box-shadow 0.18s;
+  -webkit-appearance: none;
 }
 
-.auth-page__demo-title {
-  font-size: 12px;
+.il-login__input::placeholder {
+  color: #A0AEC0;
+}
+
+.il-login__input:focus {
+  border-color: #F59E0B;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.12);
+}
+
+/* Submit */
+.il-login__submit {
+  width: 100%;
+  padding: 13px;
+  background: #0D1B2A;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.12s;
+  letter-spacing: 0.2px;
+}
+
+.il-login__submit:hover {
+  background: #1E3A5F;
+  transform: translateY(-1px);
+}
+
+.il-login__submit:active {
+  transform: translateY(0);
+}
+
+/* Divider */
+.il-login__divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #CBD5E0;
+  font-size: 0.78rem;
+}
+
+.il-login__divider::before,
+.il-login__divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: #E2E8F0;
+}
+
+.il-login__divider span {
+  color: #A0AEC0;
+  font-weight: 500;
+}
+
+/* Google button */
+.il-login__google {
+  width: 100%;
+  padding: 12px;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-sm);
+  color: #1A202C;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: border-color 0.18s, box-shadow 0.18s;
+}
+
+.il-login__google:hover {
+  border-color: #CBD5E0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.il-login__google svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Sign-up row */
+.il-login__signup-row {
+  text-align: center;
+  font-size: 0.83rem;
+  color: #718096;
+  padding-top: 4px;
+}
+
+.il-login__signup-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: #0D1B2A;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
+}
+
+.il-login__signup-link:hover {
+  color: #F59E0B;
+}
+
+/* ── Demo credentials ── */
+.il-login__demo {
+  margin-top: 24px;
+  padding: 14px 16px;
+  background: #FFFFFF;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 10px;
+}
+
+.il-login__demo-label {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #F59E0B;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
 }
 
-.auth-page__demo-text {
-  font-size: 13px;
-  color: var(--color-text);
-  margin: 4px 0;
+.il-login__demo-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 6px 0;
+  flex-wrap: wrap;
 }
 
-.auth-page__demo-text code {
-  font-family: var(--font-mono);
-  background: var(--color-bg);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-size: 12px;
+.il-login__demo-role {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #4A5568;
+  min-width: 36px;
+}
+
+.il-login__demo-code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 0.75rem;
+  color: #0D1B2A;
+  background: #F7F8FA;
+  border: 1px solid #E2E8F0;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.il-login__demo-pwd {
+  font-size: 0.72rem;
+  color: #A0AEC0;
+}
+
+/* ─── Responsive ─────────────────────────── */
+@media (max-width: 820px) {
+  .il-login {
+    flex-direction: column;
+  }
+
+  .il-login__panel {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .il-login__panel-inner {
+    padding: 32px 28px;
+  }
+
+  .il-login__panel-copy {
+    margin: 28px 0 24px;
+  }
+
+  .il-login__panel-title {
+    font-size: 1.6rem;
+  }
+
+  .il-login__trust {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    padding-top: 20px;
+  }
+
+  .il-login__stats {
+    gap: 0;
+  }
+
+  .il-login__stat {
+    padding-right: 14px;
+    margin-right: 14px;
+  }
+
+  .il-login__form-side {
+    padding: 32px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .il-login__panel-inner {
+    padding: 24px 20px;
+  }
+
+  .il-login__form-wrap {
+    max-width: 100%;
+  }
 }
