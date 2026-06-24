@@ -1,19 +1,31 @@
 import "./TopBar.css";
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 
-export default function Navbar() {
+export default function Navbar({ user, onProfileClick }) {
+  const navigate = useNavigate()
+  const location = useLocation()
+  const isAuthPage = location.pathname === '/login' || location.pathname === '/register'
+
+  const handlePostClick = () => {
+    if (user) {
+      navigate('/post')
+    } else {
+      navigate('/login')
+    }
+  }
+
   return (
     <nav className="navbar">
       {/* Logo */}
-      <a href="/" className="nav-logo">
+      <Link to="/" className="nav-logo">
         <div className="logo-sq">
           <svg viewBox="0 0 24 24">
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg>
         </div>
 
-        Industry<span>Link</span>
-      </a>
+        {!isAuthPage && <>Industry<span>Link</span></>}
+      </Link>
 
       {/* Search */}
       <div className="nav-search">
@@ -29,26 +41,41 @@ export default function Navbar() {
 
       {/* Links */}
       <div className="nav-links">
-        <a href="/" className="active">
+        <Link to="/browse" className="active">
           Services
-        </a>
+        </Link>
 
-        <a href="/">Technicians</a>
+        <Link to="/browse">Technicians</Link>
 
-        <a href="/">Jobs</a>
+        <Link to="/browse">Jobs</Link>
 
-        <a href="/">Vacant Machines</a>
+        <Link to="/browse">Vacant Machines</Link>
 
-        <a href="/">Scrap</a>
+        <Link to="/browse">Scrap</Link>
       </div>
 
       <div className="nav-spacer"></div>
 
-      <Link to="/login" className="nav-login">
-        Login
-      </Link>
+      {user ? (
+        <button
+          className="nav-profile-btn"
+          onClick={onProfileClick}
+          aria-label="Open menu"
+        >
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </button>
+      ) : (
+        !isAuthPage && (
+          <Link to="/login" className="nav-login">
+            Login
+          </Link>
+        )
+      )}
 
-      <button className="nav-post">
+      <button className="nav-post" onClick={handlePostClick}>
         + Post Listing
       </button>
     </nav>

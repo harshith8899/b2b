@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import './Login.css'
 
@@ -35,7 +35,7 @@ function Login() {
         <div className="il-login__panel-inner">
 
           {/* Logo */}
-          <a href="/" className="il-logo">
+          <Link to="/" className="il-logo">
             <div className="il-logo__sq">
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
@@ -43,7 +43,7 @@ function Login() {
               </svg>
             </div>
             Industry<span>Link</span>
-          </a>
+          </Link>
 
           {/* Headline */}
           <div className="il-login__panel-copy">
