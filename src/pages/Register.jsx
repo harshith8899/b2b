@@ -32,7 +32,7 @@ function Register() {
       await register(formData.email, formData.password, formData.name)
       navigate('/browse')
     } catch (err) {
-      setError('Registration failed. Please try again.')
+      setError(err.message || 'Registration failed. Please try again.')
     }
   }
 

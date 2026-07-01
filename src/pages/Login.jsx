@@ -23,7 +23,7 @@ function Login() {
       await login(email, password)
       navigate('/browse')
     } catch (err) {
-      setError('Login failed. Please try again.')
+      setError(err.message || 'Login failed. Please try again.')
     }
   }
 
@@ -83,9 +83,7 @@ function Login() {
         </form>
 
         <div className="auth-page__demo">
-          <p className="auth-page__demo-title">Demo accounts:</p>
-          <p className="auth-page__demo-text">User: <code>user@test.com</code> / any password</p>
-          <p className="auth-page__demo-text">Admin: <code>admin@marketplace.com</code> / any password</p>
+          <p className="auth-page__demo-title">Demo: Create a test account to get started</p>
         </div>
       </div>
     </div>
