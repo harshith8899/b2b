@@ -228,10 +228,3 @@ Currently uses **mock authentication** for demo purposes. In production:
 - Safari (latest)
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## License
-
-MIT
-
-## Author
-
-Built with Claude Code using the frontend-design skill - Professional Minimalism aesthetic.
