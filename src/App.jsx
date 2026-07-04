@@ -5,8 +5,9 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Browse from './pages/Browse'
 import Post from './pages/Post'
+import EditListing from './pages/EditListing'
 import Dashboard from './pages/Dashboard'
-import Messages from './pages/Messages'
+import Enquiries from './pages/Enquiries'
 import Profile from './pages/Profile'
 import Admin from './pages/Admin'
 import ListingDetail from './pages/ListingDetail'
@@ -35,9 +36,12 @@ function App() {
             <Route path="/browse" element={<Browse />} />
             <Route path="/listing/:id" element={<ListingDetail />} />
             <Route path="/post" element={<Post />} />
+            <Route path="/post/edit/:id" element={<EditListing />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/messages" element={<Messages />} />
-            <Route path="/messages/:id" element={<Messages />} />
+            <Route path="/enquiries" element={<Enquiries />} />
+            <Route path="/enquiries/:id" element={<Enquiries />} />
+            <Route path="/messages" element={<Navigate to="/enquiries" />} />
+            <Route path="/messages/:id" element={<Navigate to="/enquiries" />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/admin" element={<AdminRoute><Admin /></AdminRoute>} />
           </Route>

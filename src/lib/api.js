@@ -5,7 +5,7 @@ import { supabase } from './supabase'
 /**
  * Get all active listings with filters
  */
-export async function getListings({ type, location, minPrice, maxPrice, search, limit = 20, offset = 0 } = {}) {
+export async function getListings({ type, location, minPrice, maxPrice, search, limit = 20, offset = 0, excludeUserId } = {}) {
   try {
     let query = supabase
       .from('listings')
@@ -40,6 +40,11 @@ export async function getListings({ type, location, minPrice, maxPrice, search, 
 
     if (maxPrice !== undefined && maxPrice !== null) {
       query = query.lte('price', maxPrice)
+    }
+
+    // Exclude specific user's listings (e.g., don't show own listings in browse)
+    if (excludeUserId) {
+      query = query.neq('user_id', excludeUserId)
     }
 
     if (search) {

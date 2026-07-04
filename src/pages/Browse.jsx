@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { getListings, getListingTypes } from '../lib/api'
+import { useAuth } from '../context/AuthContext'
 import './Browse.css'
 
 function Browse() {
+  const { user } = useAuth()
   const [searchParams] = useSearchParams()
   const [listingTypes, setListingTypes] = useState([])
   const [activeTypeId, setActiveTypeId] = useState(null)
@@ -36,7 +38,8 @@ function Browse() {
     try {
       const { data } = await getListings({
         type: activeTypeId,
-        limit: 50
+        limit: 50,
+        excludeUserId: user?.id // Exclude current user's listings
       })
       setListings(data || [])
     } catch (err) {

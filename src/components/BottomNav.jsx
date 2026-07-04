@@ -34,11 +34,11 @@ function BottomNav() {
         <span className="bottomnav__label">Dashboard</span>
       </NavLink>
 
-      <NavLink to="/messages" className="bottomnav__item">
+      <NavLink to="/enquiries" className="bottomnav__item">
         <svg className="bottomnav__icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
         </svg>
-        <span className="bottomnav__label">Messages</span>
+        <span className="bottomnav__label">Enquiries</span>
       </NavLink>
 
       <NavLink to="/profile" className="bottomnav__item">

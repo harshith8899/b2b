@@ -8,6 +8,7 @@ function ListingDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
   const { user } = useAuth()
+  console.log(user)
   const [listing, setListing] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
@@ -38,6 +39,9 @@ function ListingDetail() {
     setSendingEnquiry(true)
 
     try {
+      console.log("Current user:", user);
+      console.log("Listing ID:", id);
+      console.log("Enquirer ID:", user.id);
       await createEnquiry({
         listing_id: id,
         enquirer_id: user.id,

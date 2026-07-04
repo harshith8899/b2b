@@ -121,12 +121,57 @@
 .listing-item__stats {
   display: flex;
   gap: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
 }
 
 .listing-item__stat {
   font-size: 13px;
   color: var(--color-text);
   opacity: 0.7;
+}
+
+.listing-item__actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  justify-content: flex-end;
+}
+
+.listing-item__action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: white;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.listing-item__action:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.listing-item__action--edit {
+  color: #2c7a7b;
+  border-color: #2c7a7b;
+}
+
+.listing-item__action--edit:hover {
+  background: #2c7a7b;
+  color: white;
+}
+
+.listing-item__action--delete {
+  color: #c53030;
+  border-color: #c53030;
+}
+
+.listing-item__action--delete:hover {
+  background: #c53030;
+  color: white;
 }
 
 .dashboard__actions {
